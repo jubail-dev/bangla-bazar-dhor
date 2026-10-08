@@ -1,4 +1,5 @@
 import { ProductItem } from "@/types/ProductType";
+import Link from "next/link";
 import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
 
 
@@ -12,10 +13,13 @@ const toBnDigit = (num: number | string): string => {
 const ProductCard = ({ product }: { product: ProductItem }) => {
   const isUp = product.change.dir === "up";
   const isDown = product.change.dir === "down";
+  
 
   return (
-    <div className="flex flex-col justify-between p-4 bg-white rounded-2xl border border-gray-100/80 shadow-sm hover:shadow-md transition-all duration-200">
-      
+    
+    <Link href={`/product/${product.id}`}>
+      <div className="flex flex-col justify-between p-4 bg-white rounded-2xl border border-gray-100/80 shadow-sm hover:shadow-md transition-all duration-200">
+
       <div className="flex items-center gap-3 mb-4">
         <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-slate-100/80 shrink-0">
           <span>{product.image}</span>
@@ -57,6 +61,7 @@ const ProductCard = ({ product }: { product: ProductItem }) => {
         </div>
       </div>
     </div>
+    </Link>
   );
 };
 
