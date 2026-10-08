@@ -9,7 +9,7 @@ const date = new Date().toLocaleDateString("bn-BD", {
 const Header = () => {
   
   return (
-    <header className="w-full border-b border-gray-100 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white shadow-sm">
       <div className="container mx-auto px-3 sm:px-4 lg:px-6">
         {/* Top Bar */}
         <div className="flex flex-col gap-4 py-3 sm:py-4 lg:flex-row lg:items-center lg:justify-between">
