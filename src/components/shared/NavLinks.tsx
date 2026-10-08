@@ -2,7 +2,7 @@ import { CategoryType } from "@/types/categoryType";
 
 const NavLinks = async () => {
   const response = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/categories"
+    "https://api.api-store.workers.dev/api/bazardor/categories",{next:{revalidate:60}}
   );
 
   const data: CategoryType[] = await response.json();

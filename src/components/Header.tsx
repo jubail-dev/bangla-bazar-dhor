@@ -1,12 +1,13 @@
-
 import { BsCart } from "react-icons/bs";
 import NavLinks from "./shared/NavLinks";
 
-const Header = () => {
-  const date = new Date().toLocaleDateString("bn-BD", {
+
+const date = new Date().toLocaleDateString("bn-BD", {
     dateStyle: "full",
   });
 
+const Header = () => {
+  
   return (
     <header className="w-full border-b border-gray-100 bg-white shadow-sm">
       <div className="container mx-auto px-3 sm:px-4 lg:px-6">

@@ -1,9 +1,14 @@
-import React from 'react';
+import PriceIncrease from "@/components/PriceIncrease";
+import Hero from "@/components/shared/Hero";
+import Image from "next/image";
 
 const HomePage = () => {
+  
+
   return (
     <div>
-      আজকের বাজারের দাম এক নজরে
+      <Hero></Hero>
+      <PriceIncrease></PriceIncrease>
     </div>
   );
 };

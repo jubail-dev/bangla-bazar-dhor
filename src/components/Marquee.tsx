@@ -3,7 +3,6 @@ import { BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
 import { LuCircleEqual } from 'react-icons/lu';
 import MarqueeText from 'react-marquee-text';
 
-// ইংরেজি সংখ্যাকে বাংলায় রূপান্তর করার ফাংশন
 const toBn = (num: number | string): string => {
   if (num === undefined || num === null) return '';
   return num
@@ -11,14 +10,13 @@ const toBn = (num: number | string): string => {
     .replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[parseInt(d)]);
 };
 
-// দামকে বাংলা কমা সহ ফরম্যাট করার ফাংশন (যেমন: ১,৮৫০)
 const formatPrice = (price: number): string => {
   return price.toLocaleString('bn-BD');
 };
 
 const Marquee = async () => {
   
-  const response = await fetch("https://api.api-store.workers.dev/api/bazardor/products");
+  const response = await fetch("https://api.api-store.workers.dev/api/bazardor/products",{next:{revalidate:60}});
   const data: ProductItem[] = await response.json();
 
   return (
@@ -36,7 +34,7 @@ const Marquee = async () => {
               >
                 
                 <span className="text-base leading-none">
-                  {product.categoryIcon}
+                  {product.image}
                 </span>
 
                 
