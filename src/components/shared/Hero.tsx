@@ -29,9 +29,9 @@ const Hero = () => {
 
           {/* Button */}
           <div className="pt-2">
-            <button className="bg-[#008a45] hover:bg-[#007339] text-white font-medium text-sm sm:text-base px-5 py-2.5 rounded-lg transition-colors cursor-pointer shadow-sm">
+            <a href="#allProducts" className="bg-[#008a45] hover:bg-[#007339] text-white font-medium text-sm sm:text-base px-5 py-2.5 rounded-lg transition-colors cursor-pointer shadow-sm">
               সব পণ্য দেখুন
-            </button>
+            </a>
           </div>
         </div>
 

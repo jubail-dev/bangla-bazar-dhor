@@ -21,13 +21,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="bn"
-      className={`${hindSiliguri.className}  h-full antialiased`}
+      className={`${hindSiliguri.className}  h-full antialiased scroll-smooth`}
     >
-      <body suppressHydrationWarning className="min-h-full flex flex-col">
+      <body suppressHydrationWarning className="min-h-screen flex flex-col">
         <Header></Header>
         <Marquee></Marquee>
 
-        <main>
+        <main className="flex-1 bg-[#F0F5F0]">
           {children}
         </main>
 

@@ -1,5 +1,6 @@
 import { BsCart } from "react-icons/bs";
 import NavLinks from "./shared/NavLinks";
+import Link from "next/link";
 
 
 const date = new Date().toLocaleDateString("bn-BD", {
@@ -10,11 +11,13 @@ const Header = () => {
   
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white shadow-sm">
-      <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+        <div className="container mx-auto px-3 sm:px-4 lg:px-6">
         {/* Top Bar */}
         <div className="flex flex-col gap-4 py-3 sm:py-4 lg:flex-row lg:items-center lg:justify-between">
           
           {/* Logo and Title */}
+          <Link href={"/"}>
+
           <div className="flex min-w-0 items-center gap-3">
             {/* Logo */}
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#008a45] text-xl text-white shadow-sm sm:h-12 sm:w-12 sm:rounded-2xl sm:text-2xl">
@@ -32,6 +35,8 @@ const Header = () => {
               </span>
             </div>
           </div>
+          </Link>
+
 
           {/* Auth Buttons */}
           <div className="flex w-full items-center gap-2 sm:w-auto sm:gap-3">
@@ -58,6 +63,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+      
     </header>
   );
 };

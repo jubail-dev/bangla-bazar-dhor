@@ -1,4 +1,5 @@
 import { CategoryType } from "@/types/categoryType";
+import Link from "next/link";
 
 const NavLinks = async () => {
   const response = await fetch(
@@ -11,8 +12,9 @@ const NavLinks = async () => {
     <nav>
       <ul className="flex items-center gap-1 sm:gap-3 md:gap-5 lg:gap-7">
         {data.map((category) => (
-          <li
-            key={category.id}
+          <Link key={category.id} href={`/categories/${category.slug}`}>
+            <li
+            
             className="flex shrink-0 items-center gap-1 rounded-lg px-2 py-1.5 text-xs font-medium text-gray-700 transition-colors hover:bg-green-50 hover:text-[#008a45] sm:gap-2 sm:px-3 sm:text-sm md:text-base"
           >
             <span className="text-sm sm:text-base">
@@ -23,6 +25,7 @@ const NavLinks = async () => {
               {category.nameBn}
             </h3>
           </li>
+          </Link>
         ))}
       </ul>
     </nav>
