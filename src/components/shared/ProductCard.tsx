@@ -1,7 +1,7 @@
 import { ProductItem } from "@/types/ProductType";
 import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
 
-// ইংরেজি সংখ্যাকে বাংলায় রূপান্তর করার হেলপার ফাংশন
+
 const toBnDigit = (num: number | string): string => {
   const bnDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
   return num
@@ -15,7 +15,7 @@ const ProductCard = ({ product }: { product: ProductItem }) => {
 
   return (
     <div className="flex flex-col justify-between p-4 bg-white rounded-2xl border border-gray-100/80 shadow-sm hover:shadow-md transition-all duration-200">
-      {/* উপরের অংশ: ছবি/আইকন, পণ্যের নাম এবং একক */}
+      
       <div className="flex items-center gap-3 mb-4">
         <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-slate-100/80 shrink-0">
           <span>{product.image}</span>
@@ -30,7 +30,6 @@ const ProductCard = ({ product }: { product: ProductItem }) => {
         </div>
       </div>
 
-      {/* নিচের অংশ: আজকের দাম এবং দামের পরিবর্তনের শতাংশ */}
       <div className="flex items-end justify-between">
         <div>
           <span className="text-xs text-gray-400 block font-normal mb-0.5">
