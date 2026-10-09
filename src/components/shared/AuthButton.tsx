@@ -2,10 +2,24 @@
 import { signOut, useSession } from "@/lib/auth-client";
 import Link from "next/link";
 import UserProfileMenu from "./UserProfileMenu";
+import { Spinner } from "@heroui/react";
 
 
 const AuthButton = () => {
     const {data: session,isPending} = useSession()
+
+   if (isPending) {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[200px] w-full p-6 bg-gray-50/60 rounded-2xl border border-gray-100">
+     
+      <div className="w-8 h-8 border-3 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+      
+      <p className="mt-3 text-xs font-medium text-gray-500 tracking-wide animate-pulse">
+        Loading, please wait...
+      </p>
+    </div>
+  );
+}
     
     return (
         <div>
