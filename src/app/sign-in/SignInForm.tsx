@@ -1,7 +1,6 @@
-
 "use client";
 
-import { signIn } from "@/lib/auth-client";
+import { authClient, signIn } from "@/lib/auth-client";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Button,
@@ -13,8 +12,22 @@ import {
   TextField,
   toast,
 } from "@heroui/react";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 const SignInForm = () => {
+
+  const handleGoogleButton = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
+  const handleGithubButton = async () => {
+    const data = await authClient.signIn.social({
+      provider: "github"
+    })
+  }
+
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -37,9 +50,7 @@ const SignInForm = () => {
     });
 
     if (error) {
-      toast.danger(
-        "সাইন ইন করতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।"
-      );
+      toast.danger("সাইন ইন করতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
       return;
     }
 
@@ -55,9 +66,7 @@ const SignInForm = () => {
     <div className="min-h-screen bg-[#f1f4f2] flex flex-col items-center justify-center p-4 font-sans text-gray-800">
       {/* Header Section */}
       <div className="text-center mb-6">
-        <h1 className="text-3xl font-extrabold text-gray-900 mb-2">
-          সাইন ইন
-        </h1>
+        <h1 className="text-3xl font-extrabold text-gray-900 mb-2">সাইন ইন</h1>
 
         <p className="text-sm text-gray-600">
           বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।
@@ -74,9 +83,7 @@ const SignInForm = () => {
             type="email"
             className="flex flex-col gap-1.5 text-left"
           >
-            <Label className="text-sm font-semibold text-gray-800">
-              ইমেইল
-            </Label>
+            <Label className="text-sm font-semibold text-gray-800">ইমেইল</Label>
 
             <Input
               placeholder="you@example.com"
@@ -129,18 +136,26 @@ const SignInForm = () => {
         <div className="grid grid-cols-2 gap-3 mb-6">
           {/* Google Button */}
           <button
+            onClick={handleGoogleButton}
             type="button"
             className="flex items-center justify-center gap-2 border border-gray-800 rounded-xl py-2 px-3 hover:bg-gray-50 transition-colors text-xs font-bold text-gray-900 text-center leading-tight"
           >
-            <span>Google দিয়ে চালিয়ে যান</span>
+            <div className="flex gap-2 justify-center items-center">
+              <FcGoogle className="text-2xl" />
+              <span>Google দিয়ে চালিয়ে যান</span>
+            </div>
           </button>
 
           {/* GitHub Button */}
           <button
+            onClick={handleGithubButton}
             type="button"
             className="flex items-center justify-center gap-2 border border-gray-800 rounded-xl py-2 px-3 hover:bg-gray-50 transition-colors text-xs font-bold text-gray-900 text-center leading-tight"
           >
-            <span>GitHub দিয়ে চালিয়ে যান</span>
+            <div className="flex gap-2 justify-center items-center">
+              <FaGithub className="text-2xl" />
+              <span>GitHub দিয়ে চালিয়ে যান</span>
+            </div>
           </button>
         </div>
 
@@ -168,4 +183,3 @@ const SignInForm = () => {
 };
 
 export default SignInForm;
-

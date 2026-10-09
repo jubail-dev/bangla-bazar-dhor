@@ -1,5 +1,5 @@
 "use client";
-import { signUp } from "@/lib/auth-client";
+import { authClient, signUp } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import {
   Button,
@@ -12,8 +12,23 @@ import {
   toast,
 } from "@heroui/react";
 import { router } from "better-auth/api";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 const SignUpPage = () => {
+
+  const handleGoogleButton = async () => {
+      const data = await authClient.signIn.social({
+        provider: "google",
+      });
+    };
+    const handleGithubButton = async () => {
+      const data = await authClient.signIn.social({
+        provider: "github"
+      })
+    }
+
+
   const router = useRouter();
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -159,24 +174,30 @@ const SignUpPage = () => {
 
         {/* Social Authentication Buttons */}
         <div className="grid grid-cols-2 gap-3 mb-6">
-          {/* Google Button */}
-          <button
-            type="button"
-            className="flex items-center justify-center gap-2 border border-gray-800 rounded-lg py-2 px-2 hover:bg-gray-50 transition-colors text-xs font-bold text-gray-900"
-          >
-            
-            <span>Google দিয়ে চালিয়ে যান</span>
-          </button>
-
-          {/* GitHub Button */}
-          <button
-            type="button"
-            className="flex items-center justify-center gap-2 border border-gray-800 rounded-lg py-2 px-2 hover:bg-gray-50 transition-colors text-xs font-bold text-gray-900"
-          >
-            
-            <span>GitHub দিয়ে চালিয়ে যান</span>
-          </button>
-        </div>
+                  {/* Google Button */}
+                  <button
+                    onClick={handleGoogleButton}
+                    type="button"
+                    className="flex items-center justify-center gap-2 border border-gray-800 rounded-xl py-2 px-3 hover:bg-gray-50 transition-colors text-xs font-bold text-gray-900 text-center leading-tight"
+                  >
+                    <div className="flex gap-2 justify-center items-center">
+                      <FcGoogle className="text-2xl" />
+                      <span>Google দিয়ে চালিয়ে যান</span>
+                    </div>
+                  </button>
+        
+                  {/* GitHub Button */}
+                  <button
+                    onClick={handleGithubButton}
+                    type="button"
+                    className="flex items-center justify-center gap-2 border border-gray-800 rounded-xl py-2 px-3 hover:bg-gray-50 transition-colors text-xs font-bold text-gray-900 text-center leading-tight"
+                  >
+                    <div className="flex gap-2 justify-center items-center">
+                      <FaGithub className="text-2xl" />
+                      <span>GitHub দিয়ে চালিয়ে যান</span>
+                    </div>
+                  </button>
+                </div>
 
         {/* Existing Account Link */}
         <p className="text-center text-sm text-gray-600">
