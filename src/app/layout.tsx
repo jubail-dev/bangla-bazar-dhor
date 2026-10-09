@@ -22,6 +22,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="bn"
+      data-scroll-behavior="smooth"
       className={`${hindSiliguri.className}  h-full antialiased scroll-smooth`}
     >
       <body suppressHydrationWarning className="min-h-screen flex flex-col">

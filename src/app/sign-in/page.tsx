@@ -37,6 +37,7 @@ const SignInPage = () => {
     if (resData) {
       toast.success("সাইন ইন সফল হয়েছে!");
       router.push("/");
+      router.refresh();
     }
   };
 

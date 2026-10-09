@@ -191,12 +191,12 @@ const SignUpPage = () => {
       </div>
 
       {/* Back to Home Link */}
-      <a
-        href="#"
+      <Link
+        href="/"
         className="mt-6 text-sm text-gray-600 hover:text-gray-900 underline transition-colors"
       >
         ← হোম পেজে ফিরে যান
-      </a>
+      </Link>
     </div>
   );
 };
