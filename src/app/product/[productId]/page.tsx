@@ -20,13 +20,7 @@ const ProductDetailsPage = async ({ params }: Props) => {
     { cache: "no-store" }
   );
 
-  if (!response.ok) {
-    return (
-      <div className="min-h-screen bg-[#f4f6f4] flex items-center justify-center p-4">
-        <p className="text-gray-600 font-medium">পণ্যের তথ্য পাওয়া যায়নি।</p>
-      </div>
-    );
-  }
+ 
 
   const product: ProductItem = await response.json();
 
