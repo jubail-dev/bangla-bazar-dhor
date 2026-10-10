@@ -17,7 +17,7 @@ const ProductDetailsPage = async ({ params }: Props) => {
   const { productId } = await params;
 
   const response = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products/${productId}`,
+    `https://openapi.programming-hero.com/api/bazardor/products/${productId}`,
     { cache: "no-store" }
   );
 

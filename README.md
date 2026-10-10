@@ -74,9 +74,9 @@ Route-এর নাম project-এর বর্তমান implementation-এ�
 
 🔌 Product API
 Primary base URL
-https://api.api-store.workers.dev/api/bazardor
+https://openapi.programming-hero.com/api/bazardor
 Alternative base URL
-https://api.abcz.workers.dev/api/bazardor
+https://openapi.programming-hero.com/api/bazardor
 Endpoint	Purpose
 GET /products	সব পণ্যের তালিকা
 GET /products?category=chal	নির্দিষ্ট category-র পণ্য

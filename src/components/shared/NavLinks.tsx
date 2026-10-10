@@ -13,7 +13,7 @@ const NavLinks = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       const response = await fetch(
-        "https://api.api-store.workers.dev/api/bazardor/categories"
+        "https://openapi.programming-hero.com/api/bazardor/categories"
       );
 
       const categories: CategoryType[] = await response.json();

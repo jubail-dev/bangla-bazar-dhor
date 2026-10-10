@@ -17,7 +17,7 @@ const ProductCategories = async ({ params }: Props) => {
   const { categoriesId } = await params;
 
   const response = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products?category=${categoriesId}`,
+    `https://openapi.programming-hero.com/api/bazardor/products?category=${categoriesId}`,
     {
       next: {
         revalidate: 60,

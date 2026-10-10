@@ -4,7 +4,7 @@ import ProductCard from "./shared/ProductCard";
 
 const PriceIncrease = async () => {
   const response = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
+    "https://openapi.programming-hero.com/api/bazardor/products",
     { next: { revalidate: 60 } }
   );
   const data = await response.json();

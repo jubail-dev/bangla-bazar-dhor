@@ -16,7 +16,7 @@ const formatPrice = (price: number): string => {
 
 const Marquee = async () => {
   
-  const response = await fetch("https://api.api-store.workers.dev/api/bazardor/products",{next:{revalidate:60}});
+  const response = await fetch("https://openapi.programming-hero.com/api/bazardor/products",{next:{revalidate:60}});
   const data: ProductItem[] = await response.json();
 
   return (

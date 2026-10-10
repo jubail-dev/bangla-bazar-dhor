@@ -10,10 +10,21 @@ const toBnDigit = (num: number | string): string => {
 
 const AllProducts =async () => {
      const response = await fetch(
-            "https://api.api-store.workers.dev/api/bazardor/products",
-            { next: { revalidate: 60 } }
-          );
-          const data : ProductItem[] = await response.json();
+  "https://openapi.programming-hero.com/api/bazardor/products",
+  { next: { revalidate: 60 } }
+);
+
+if (!response.ok) {
+  throw new Error(`Products API failed: ${response.status}`);
+}
+
+const contentType = response.headers.get("content-type");
+
+if (!contentType?.includes("application/json")) {
+  throw new Error(`Expected JSON but received: ${contentType}`);
+}
+
+const data: ProductItem[] = await response.json();
           
     return (
         <section id='allProducts' className="scroll-mt-33 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
