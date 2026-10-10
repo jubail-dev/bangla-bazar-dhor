@@ -28,15 +28,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body suppressHydrationWarning className="min-h-screen flex flex-col">
         <Toast.Provider placement="top" />
-        <Toaster position="top-center" richColors />
+        
         <Header></Header>
         <Marquee></Marquee>
         
         <main className="flex-1 bg-[#F0F5F0]">
           {children}
         </main>
-
+        
         <Footer></Footer>
+        <Toaster position="top-center" richColors />
       </body>
     </html>
   );

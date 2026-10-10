@@ -1,20 +1,19 @@
+"use client";
 
-'use client';
-
-import React, { useState } from 'react';
-import { useSession, signOut, updateUser } from '@/lib/auth-client';
-import { toast } from 'sonner';
-
+import React, { useState } from "react";
+import { useSession, updateUser, signOut } from "@/lib/auth-client";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 const ProfilePage: React.FC = () => {
   const { data: session, isPending } = useSession();
-
+  const router = useRouter();
   const user = session?.user;
 
-  const [inputName, setInputName] = useState<string>('');
+  const [inputName, setInputName] = useState<string>("");
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
   const [isSigningOut, setIsSigningOut] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>('');
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [message, setMessage] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   // Loading skeleton
   if (isPending) {
@@ -30,7 +29,8 @@ const ProfilePage: React.FC = () => {
   }
 
   // Sign out handler
-  const handleSignOut = async (): Promise<void> => {
+
+   const handleSignOut = async (): Promise<void> => {
     setIsSigningOut(true);
     setErrorMessage('');
     setMessage('');
@@ -39,8 +39,9 @@ const ProfilePage: React.FC = () => {
       await signOut({
         fetchOptions: {
           onSuccess: () => {
+            toast.success('সফলভাবে সাইন আউট হয়েছে!');
             window.location.href = '/';
-            toast.success('সাইন আউট সফল হয়েছে!');
+            
           },
           onError: () => {
             toast.error('সাইন আউট করা যায়নি। আবার চেষ্টা করুন।');
@@ -65,21 +66,21 @@ const ProfilePage: React.FC = () => {
     const trimmedName = inputName.trim();
 
     if (!trimmedName) {
-      setErrorMessage('অনুগ্রহ করে আপনার নাম লিখুন।');
-      setMessage('');
+      setErrorMessage("অনুগ্রহ করে আপনার নাম লিখুন।");
+      setMessage("");
       return;
     }
 
-    if (trimmedName === (user?.name ?? '')) {
-      setMessage('আপনার নাম আগে থেকেই একই আছে।');
-      toast.info('আপনার নাম আগে থেকেই একই আছে।');
-      setErrorMessage('');
+    if (trimmedName === (user?.name ?? "")) {
+      setMessage("আপনার নাম আগে থেকেই একই আছে।");
+      toast.info("আপনার নাম আগে থেকেই একই আছে।");
+      setErrorMessage("");
       return;
     }
 
     setIsUpdating(true);
-    setMessage('');
-    setErrorMessage('');
+    setMessage("");
+    setErrorMessage("");
 
     try {
       const result = await updateUser({
@@ -87,17 +88,14 @@ const ProfilePage: React.FC = () => {
       });
 
       if (result.error) {
-        toast.error(
-          result.error.message || 'নাম আপডেট করতে সমস্যা হয়েছে।',
-        );
+        toast.error(result.error.message || "নাম আপডেট করতে সমস্যা হয়েছে।");
         return;
       }
 
       setInputName(trimmedName);
-      toast.success('নাম সফলভাবে হালনাগাদ করা হয়েছে!');
+      toast.success("নাম সফলভাবে হালনাগাদ করা হয়েছে!");
     } catch (error: unknown) {
-
-      toast.error('নাম আপডেট করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।');
+      toast.error("নাম আপডেট করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
     } finally {
       setIsUpdating(false);
     }
@@ -106,12 +104,9 @@ const ProfilePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#f2f5f3] px-4 py-12 font-sans sm:px-6 lg:px-8">
       <div className="mx-auto max-w-2xl space-y-6">
-
         {/* Header */}
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">
-            আমার প্রোফাইল
-          </h1>
+          <h1 className="text-2xl font-bold text-gray-900">আমার প্রোফাইল</h1>
 
           <p className="mt-1 text-sm text-gray-600">
             আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।
@@ -124,22 +119,22 @@ const ProfilePage: React.FC = () => {
             {user?.image ? (
               <img
                 src={user.image}
-                alt={user.name || 'User Avatar'}
+                alt={user.name || "User Avatar"}
                 className="h-12 w-12 shrink-0 rounded-xl border border-gray-200 object-cover"
               />
             ) : (
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#008a45] text-xl font-semibold uppercase text-white">
-                {user?.name?.trim().charAt(0) || 'U'}
+                {user?.name?.trim().charAt(0) || "U"}
               </div>
             )}
 
             <div className="min-w-0">
               <h2 className="truncate text-lg font-semibold text-gray-800">
-                {user?.name || 'Guest User'}
+                {user?.name || "Guest User"}
               </h2>
 
               <p className="break-all text-sm text-gray-500">
-                {user?.email || 'Not signed in'}
+                {user?.email || "Not signed in"}
               </p>
             </div>
           </div>
@@ -166,7 +161,7 @@ const ProfilePage: React.FC = () => {
               />
             </svg>
 
-            {isSigningOut ? 'সাইন আউট হচ্ছে...' : 'সাইন আউট'}
+            {isSigningOut ? "সাইন আউট হচ্ছে..." : "সাইন আউট"}
           </button>
         </div>
 
@@ -211,8 +206,8 @@ const ProfilePage: React.FC = () => {
                 value={inputName}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                   setInputName(event.target.value);
-                  setMessage('');
-                  setErrorMessage('');
+                  setMessage("");
+                  setErrorMessage("");
                 }}
                 className="w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-gray-800 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-[#008a45]"
                 placeholder="আপনার নাম লিখুন"
@@ -228,7 +223,7 @@ const ProfilePage: React.FC = () => {
               disabled={isUpdating || !inputName.trim()}
               className="rounded-lg bg-[#008a45] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#007339] disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {isUpdating ? 'হালনাগাদ হচ্ছে...' : 'নাম হালনাগাদ করুন'}
+              {isUpdating ? "হালনাগাদ হচ্ছে..." : "নাম হালনাগাদ করুন"}
             </button>
           </form>
         </div>
@@ -238,4 +233,3 @@ const ProfilePage: React.FC = () => {
 };
 
 export default ProfilePage;
-

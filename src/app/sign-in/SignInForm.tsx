@@ -21,13 +21,13 @@ const SignInForm = () => {
     const data = await authClient.signIn.social({
       provider: "google",
     });
-    toast.success("সাইন ইন সফল হয়েছে!");
+    
   };
   const handleGithubButton = async () => {
     const data = await authClient.signIn.social({
       provider: "github"
     })
-    toast.success("সাইন ইন সফল হয়েছে!");
+    
   }
 
   const router = useRouter();

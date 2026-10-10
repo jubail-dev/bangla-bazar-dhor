@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signOut } from "@/lib/auth-client";
+import { toast } from "sonner";
 
 type UserProfileMenuProps = {
   session: {
@@ -25,28 +26,36 @@ export default function UserProfileMenu({
   const router = useRouter();
 
   // Sign Out Handler
-  const handleSignOut = async () => {
-    try {
-      setIsSigningOut(true);
+  const handleSignOut = async (): Promise<void> => {
+  try {
+    setIsSigningOut(true);
 
-      const { error } = await signOut();
+    const { error } = await signOut();
 
-      if (error) {
-        console.error("Sign out failed:", error);
-        return;
-      }
+    if (error) {
+      toast.error("সাইন আউট করা যায়নি। আবার চেষ্টা করুন।");
+      console.error("Sign out failed:", error);
+      return;
+    }
 
-      setIsOpen(false);
+    setIsOpen(false);
 
-      // Home page-e redirect
+    toast.success("সফলভাবে সাইন আউট হয়েছে!", {
+      duration: 3000,
+    });
+
+    // Toast দেখানোর পর Home page-এ যাওয়া
+    setTimeout(() => {
       router.replace("/");
       router.refresh();
-    } catch (error) {
-      console.error("Sign out failed:", error);
-    } finally {
-      setIsSigningOut(false);
-    }
-  };
+    }, 1500);
+  } catch (error: unknown) {
+    console.error("Sign out failed:", error);
+    toast.error("সাইন আউট করতে সমস্যা হয়েছে।");
+  } finally {
+    setIsSigningOut(false);
+  }
+};
 
   // User name-er first letter
   const userInitial = session.user.name
