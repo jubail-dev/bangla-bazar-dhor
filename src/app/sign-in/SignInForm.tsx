@@ -10,10 +10,10 @@ import {
   Label,
   Link,
   TextField,
-  toast,
 } from "@heroui/react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { toast } from "sonner";
 
 const SignInForm = () => {
 
@@ -21,11 +21,13 @@ const SignInForm = () => {
     const data = await authClient.signIn.social({
       provider: "google",
     });
+    toast.success("সাইন ইন সফল হয়েছে!");
   };
   const handleGithubButton = async () => {
     const data = await authClient.signIn.social({
       provider: "github"
     })
+    toast.success("সাইন ইন সফল হয়েছে!");
   }
 
   const router = useRouter();
@@ -50,7 +52,7 @@ const SignInForm = () => {
     });
 
     if (error) {
-      toast.danger("সাইন ইন করতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
+      toast.error("সাইন ইন করতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
       return;
     }
 

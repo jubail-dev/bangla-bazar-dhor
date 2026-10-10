@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Marquee from "@/components/Marquee";
 import Footer from "@/components/Footer";
 import { Toast } from "@heroui/react";
+import { Toaster } from 'sonner';
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["latin","bengali"],
@@ -26,9 +27,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${hindSiliguri.className}  h-full antialiased scroll-smooth`}
     >
       <body suppressHydrationWarning className="min-h-screen flex flex-col">
+        <Toast.Provider placement="top" />
+        <Toaster position="top-center" richColors />
         <Header></Header>
         <Marquee></Marquee>
-        <Toast.Provider placement="top"/>
+        
         <main className="flex-1 bg-[#F0F5F0]">
           {children}
         </main>

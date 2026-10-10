@@ -10,9 +10,9 @@ const date = new Date().toLocaleDateString("bn-BD", {
 
 const Header = () => {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white shadow-sm">
+    <header className="sticky top-0 z-10 w-full border-b border-gray-100 bg-white shadow-sm">
       <div className="container mx-auto px-3 sm:px-4 lg:px-6">
-        {/* Top Bar: মোবাইলেও লোগো ও AuthButton পাশাপাশি থাকবে */}
+        
         <div className="flex items-center justify-between gap-3 py-2.5 sm:py-4">
           {/* Logo and Title */}
           <Link href={"/"} className="min-w-0 shrink">

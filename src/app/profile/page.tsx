@@ -3,6 +3,7 @@
 
 import React, { useState } from 'react';
 import { useSession, signOut, updateUser } from '@/lib/auth-client';
+import { toast } from 'sonner';
 
 const ProfilePage: React.FC = () => {
   const { data: session, isPending } = useSession();
@@ -39,9 +40,10 @@ const ProfilePage: React.FC = () => {
         fetchOptions: {
           onSuccess: () => {
             window.location.href = '/';
+            toast.success('সাইন আউট সফল হয়েছে!');
           },
           onError: () => {
-            setErrorMessage('সাইন আউট করা যায়নি। আবার চেষ্টা করুন।');
+            toast.error('সাইন আউট করা যায়নি। আবার চেষ্টা করুন।');
             setIsSigningOut(false);
           },
         },
@@ -70,6 +72,7 @@ const ProfilePage: React.FC = () => {
 
     if (trimmedName === (user?.name ?? '')) {
       setMessage('আপনার নাম আগে থেকেই একই আছে।');
+      toast.info('আপনার নাম আগে থেকেই একই আছে।');
       setErrorMessage('');
       return;
     }
@@ -84,18 +87,17 @@ const ProfilePage: React.FC = () => {
       });
 
       if (result.error) {
-        setErrorMessage(
+        toast.error(
           result.error.message || 'নাম আপডেট করতে সমস্যা হয়েছে।',
         );
         return;
       }
 
       setInputName(trimmedName);
-      setMessage('নাম সফলভাবে হালনাগাদ করা হয়েছে!');
+      toast.success('নাম সফলভাবে হালনাগাদ করা হয়েছে!');
     } catch (error: unknown) {
-      console.error('Name update error:', error);
 
-      setErrorMessage('নাম আপডেট করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।');
+      toast.error('নাম আপডেট করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।');
     } finally {
       setIsUpdating(false);
     }

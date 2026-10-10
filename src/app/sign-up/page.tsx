@@ -9,11 +9,10 @@ import {
   Label,
   Link,
   TextField,
-  toast,
 } from "@heroui/react";
-import { router } from "better-auth/api";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { toast } from 'sonner';
 
 const SignUpPage = () => {
 
@@ -21,11 +20,13 @@ const SignUpPage = () => {
       const data = await authClient.signIn.social({
         provider: "google",
       });
+      toast.success("সাইন ইন সফল হয়েছে!");
     };
     const handleGithubButton = async () => {
       const data = await authClient.signIn.social({
         provider: "github"
       })
+      toast.success("সাইন ইন সফল হয়েছে!");
     }
 
 
@@ -41,7 +42,7 @@ const SignUpPage = () => {
     };
 
     if (data.password !== data.confirmPassword) {
-      toast.danger("পাসওয়ার্ড এবং নিশ্চিত পাসওয়ার্ড মিলছে না");
+      toast.error("পাসওয়ার্ড এবং নিশ্চিত পাসওয়ার্ড মিলছে না");
       return;
     }
 
@@ -52,7 +53,7 @@ const SignUpPage = () => {
     });
 
     if (error) {
-      toast.danger("সাইন আপ করতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
+      toast.error("সাইন আপ করতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
       return;
     }
     if (resData) {
