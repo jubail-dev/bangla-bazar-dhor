@@ -6,6 +6,7 @@ import Marquee from "@/components/Marquee";
 import Footer from "@/components/Footer";
 import { Toast } from "@heroui/react";
 import { Toaster } from 'sonner';
+import { Suspense } from "react";
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["latin","bengali"],
@@ -30,7 +31,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Toast.Provider placement="top" />
         
         <Header></Header>
-        <Marquee></Marquee>
+        <Suspense
+          fallback={
+            <div className="flex min-h-10 items-center justify-center border-y border-gray-200 bg-gray-50/80 py-2 text-sm text-gray-500">
+              বাজারদরের তথ্য লোড হচ্ছে...
+            </div>
+          }
+        >
+          <Marquee />
+        </Suspense>
         
         <main className="flex-1 bg-[#F0F5F0]">
           {children}
