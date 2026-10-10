@@ -1,3 +1,4 @@
+export const instant = false;
 import { ProductItem } from "@/types/ProductType";
 import Link from "next/link";
 
